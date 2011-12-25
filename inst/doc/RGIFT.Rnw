@@ -1,0 +1,462 @@
+\documentclass[a4paper]{article}
+
+\usepackage{verbatim}
+
+\usepackage[latin1]{inputenc}
+
+\usepackage[authoryear]{natbib}
+
+
+% \VignetteIndexEntry{An R Package for producing questionnaires in GIFT format}
+% \VignetteDepends{RGIFT}
+% \VignetteKeyword{GIFT}
+% \VignetteKeyword{Moodle}
+
+\title{RGIFT: An R Package for producing questionnaires in GIFT format}
+\author{Virgilio Gómez-Rubio, María José Haro-Delicado and\\ Franciso Parreño-Torres}
+
+\newcommand{\RR}{\texttt{R}\ }
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\pkg}[1]{\textsf{#1}}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+This paper introduces \RR package \pkg{RGIFT} to produce questionnaires in the
+GIFT format. This is a popular format used by several virtual learning
+environments. This package, combined with the \RR programming language, can be
+used to produce a number of questionnaires to test students' skills in an easy
+way.
+
+
+\end{abstract}
+
+
+\section{Introduction}
+
+
+\citet{ZeileisBettina:2009} describe the development of exams in an automated
+way in order to deal with a large number of students. In this work we describe
+a similar problem but provide a different solution based on the use
+of on-line questionnaires in a Course Management System.
+
+This work has been triggered by the development of the Bolgone Process\footnote{http://www.ond.vlaanderen.be/hogeronderwijs/bologna/}
+and the need for a continuous assessment of the students during all their
+learning process. Lecturers are required to assess the students' developments
+through regular tests.
+
+Most engineering degrees in the University of Castilla-La Mancha (UCLM)
+have a first-year course on Statistics. In order to conduct a continuous
+evaluation, which is at the heart of the Bologne Process, a number of tests are
+taken by the students in regular intervals. In particular, a test is taken at
+the end of each practical session in the computer lab. 
+
+The total number of first-year students attending these courses is between 300
+and 400 in the Degrees of Computer Science and Industrial Engineering where we
+teach. UCLM provides all students and academic staff access to a Course
+Management System \citet{Moodle}. Moodle is a complex system which allows
+lecturers to upload files with course notes, excercises and other interesting
+options to assess the students.
+
+In particular, Moodle provides a suitable framework to develop tasks for the
+students. The most basic one is to provide a place to upload files so that
+lectures can grade them. Another interesting option includes on-line
+questionnaires.  In this case, the student is presented with a number of
+different types of questions that he has to answer in a limited time. Moodle
+provides a grafical user interface to create these questions for this can be
+slow and, sometimes, cumbersome if a large number of questions need to be
+developed. Needless to say that once the student has finisehd and submitted his
+answers, he may get his mark immediately.
+
+For this reason we have developed package \code{RGIFT}. With it a large
+number of differnt types of questions can be generated and used to create
+questionnaires for the students. In this paper we describe not only 
+the different options in this package but also how to take advantage of
+the Moodle platform to produce questionnaires to assess students.
+
+\section{Creating questionnaires with GIFT}
+
+The \citet{GIFT} format provides a simple but flexible way of producing
+questionnaires. Moodle can import and export questionnaires in GIFT format and
+there are several tools to convert from GIFT into other popular formats for
+on-line questionnaires. Questions must be written using UTF-8 text encoding.
+
+Package \pkg{RGIFT} implements several functions to print questions in the GIFT
+format. The output can be redirected to a file using, for example, the
+\code{sink()} function. Similarly, \pkg{Sweave} \citep{Leisch:2002} can be used
+to embed the \RR code so that the ouput is directly included in the R output
+file.
+
+The GIFT formats can deal with different types of questions whose formats are
+described in the following sections.  Comments can be added to the
+questionnaire text file by using function \code{GIFTcomment()}. Also, questions
+can be grouped into categories by using function \code{GIFTcategory()}. Once
+this function is called, all question will be included in the same section
+until another category is set.
+
+
+\subsection{Types of questions}
+
+\subsubsection{Multiple Choice Questions}
+
+Multiple Choice questions are those for which several possible answers are
+given and one must be chosen. Full mark is obtained only when the right answer
+is chosen and the student can get a penalty (i.e., negative mark) if a wrong
+answer is chosen rather than leaving the answer empty.  Other variants include
+the option of having alternative "less right" answers which will not give the
+full mark. This can be controlled by assigning different weights to right and
+wrong answers.
+
+The following \RR code shows how to produce a 3-question questionnaire
+using Multiple Choice Questions:
+
+
+\verbatiminput{MCQExample.R}
+<<>>=
+library(RGIFT)
+source("MCQExample.R")
+@
+
+Question 1 provides a very simple question about the mean of a set of numbers.
+In addition to the question, a vector of possible answers is given and the
+index of the right answer is available in \code{rightans}. Also, a negative
+weight is assigned to all the wrong answers (\code{wwrong="-33.333" }).
+Full marks will have a weight of 100.00 and secondary right answers
+can be given a lower positive weight.
+Question 2 is a similar answer where the right answer is the first one in the
+vector of possible answers (this is the default).  
+
+Question 3 is an example of a Multiple Choice question where there is a
+right answer which gives full mark, another not so good answer (which
+gives a 50\%) and wrong answers (with a penalty). Note how now the
+Multiple Answer flag is set (\code{MAnswer=TRUE}). As one of the answers
+provides the full mark, Moodle only allows a single answer to be chosen.
+
+Finally, Question 4 is an example of a trully Multiple Choice question where
+multiple answers must be chosen. Note that this is so because no single answer
+provides a full mark and that in order to get a 100\% two answers must be
+chosen.
+
+\subsubsection{True-False Questions}
+
+True-False questions are those in which a statement is made and the student has
+to mark it either as true or false. The following code shows some examples
+using function \code{GIFTTF()}:
+
+\verbatiminput{TFQExample.R}
+<<>>=
+source("TFQExample.R")
+@
+
+
+\subsubsection{Short Answer Questions}
+
+Short Answer questions are those for which the students has to write down the 
+answer. This can be produced using function \code{GIFTSA()} as follows:
+
+\verbatiminput{SAQExample.R}
+<<>>=
+source("SAQExample.R")
+@
+
+Similarly to the Multiple Choice questions, different weights for right and
+worngs answers can be set. Multiple answers are possible as well.
+
+\subsubsection{Matching Questions}
+
+Matching Questions provide two groups of words and/or sentences that need
+to be matched. This can be produced as follows using function \code{GIFTM()}:
+
+\verbatiminput{MQExample.R}
+<<>>=
+source("MQExample.R")
+@
+
+\subsubsection{Missing Word Questions}
+
+In Missing Words questions the students need to fill in an empty space
+in a sentence with a word from a list. These can be defined
+using function \code{GIFTMW()}:
+
+
+\verbatiminput{MWQExample.R}
+<<>>=
+source("MWQExample.R")
+@
+
+
+
+\subsubsection{Numerical Questions}
+
+With  numerical questions students are asked to compute something and write the
+numeric answer down. Rather than matching the exact number it is better to
+allow for some error around the exact value so that valid answers are those
+found in an short interval. This questions are defined as following using
+function \code{GIFTNQ()}:
+
+
+\verbatiminput{NQExample.R}
+<<>>=
+source("NQExample.R")
+@
+
+
+In principle, the range for valid answers is the answer plus/minus the error
+(as in Question 1 above).  If the answer is a vector of length two, then that
+is the range of valid answers (as in Question 2 above).
+
+\subsubsection{Essays}
+
+Essays are simply a question followed by a text box where the student is asked
+to write some text. This can be done, for example, to ask students to write
+some code to perform a particular task.  The answers can be downloaded later
+and run through \RR to test the students' code automatically. This questions can
+be created with command \code{GIFTE()}:
+
+\verbatiminput{EExample.R}
+<<>>=
+source("EExample.R")
+@
+
+
+\subsubsection{Description}
+
+Finally, Descriptions provide some text with no answer required. These
+descriptions are useful to include hints or tips in the questionnaires
+or to mark the beginning of different blocks of questions. Descriptions
+can be added with command \code{GIFTD()}:
+
+\verbatiminput{DExample.R}
+<<>>=
+source("DExample.R")
+@
+
+\subsection{Formatting text}
+
+In principle, questions and answers will be shown in plain text.
+However, other text formats can be used with Moodle.
+A full description of them is available at 
+\verb+http://docs.moodle.org/21/en/Formatting_text+.
+The text format is specified before the question text inside square
+brakets. The options are:
+
+\begin{description}
+
+\item[moodle] is for Moodle Auto-Format text. This is used in 
+text boxes in Moodle (for example, to send e-mails , add descriptions, etc.).
+
+\item[html] is for HTML text. This will allow the use of most HTML tags to
+customise the text, add external links, etc.
+
+\item[plain] is for plain text. The question will be shown as it is written
+and special tags (for example, in HTML) will be shown as they are written with
+no other effect.
+
+\item[markdown] is for Markdown text. This is another simple format to enhance
+the text. A complete description of this format is available at 
+
+\verb+http://docs.moodle.org/22/en/Markdown+
+
+\end{description}
+
+
+In addition, it is necessary to take care of a number of special
+characters (such as \, \$, \{, \} and others) as they may not be displayed
+correctly. Function \code{RGIFTparse()}
+will look for these specials characters in a string and substitute them
+by an equivalent expression which will not interfere with the GIFT format.
+The following example will take a string with some of these special
+characters and return a valid one which can be passed to any of the
+functions to produce the questions:
+
+<<>>=
+GIFTparse("Take care with $, {, } and ~.")
+@
+\noindent
+The double backslash is need because text is printed using the \code{cat()}
+function but a single backslash will be printed.
+
+
+Finally, as text must be encoded in UTF-8 function \code{iconv()} can be used
+to convert  text strings from the local character encoding into UTF-8.
+A simple example in Spanish could be:
+
+\verbatiminput{UTF8.R}
+<<>>=
+source("UTF8.R")
+@
+\noindent
+Note that the previous text has been written in an environment with a
+ISO-8859-15 encoding. A good discussion on the use of different encodings
+in \RR can be found in the manual page of function \code{Encoding()}.
+
+
+
+\subsection{Including images}
+
+Sometimes questions require the use of images that display data or summary
+results. In principle, this images should be among the files uploaded to
+Moodle.  Images can be uploaded to the course site in Moodle in a ZIP file and
+then uncompressed there.  Alternatively, the images can be created and stored
+in the same server but outside Moodle (for example, the lecturer's web site) so
+that they are linked from the question text using HTML tags.
+
+A convenient approach is to define an image repository and create all images
+in JPEG or PNG format. Then the images can be uploaded to the image repository
+and the complete link included in the question text. A simple example
+would look as follows:
+
+<<>>=
+#Image repository
+repos<-"http://www.uclm.es/profesorado/vgomez/imgtests/"
+
+#Create image
+imgfile<-"q1.png"
+png(imgfile, width=480, height=240)
+
+par(mfrow=c(1,4))
+#Sample several random variables and plot histogram
+hist(rbinom(100, 10, .25), main="(a)", xlab="x")
+hist(rnorm(100, 10*.25, sqrt(10*.25*.75)), main="(b)", xlab="x")
+hist(rexp(100, 1/(10*.25)), main="(c)", xlab="x")
+hist(runif(100, 8, 12), main="(d)", xlab="x")
+
+dev.off()
+
+#Create question in HTML format
+qtxt<-paste("[html]What\'s the histogram for a Binomial variable with n=10 and prob=0.25?\n<p>\n<img src=\'", repos, imgfile, "\'>\n<p>", sep="")
+
+#Print question
+sink(file="imgqtion.txt", type="output")
+GIFTMC(qtxt, c("(a)", "(b)", "(c)", "(d)"), rightans=1, wwrong="-33.333")
+sink()
+
+@
+\noindent
+Note that different images must have different names but that this can
+be easily implemented in \RR.
+
+
+
+\subsection{Dealing with equations}
+
+In some cases equations need to be displayed in the question text or in the answers.
+Moodle supports many different ways of including equations (see 
+\verb+http://docs.moodle.org/22/en/Mathematics+). However, when producing
+questions, it is necessary to include the equations within the question text.
+Moodle allows the use of in-line \LaTeX\ syntax for equations provided that
+these are included using \LaTeX\ math-mode (i.e., using the two-dollar signs
+before and after the equation). For example:
+
+
+<<>>=
+sink(file="eqqtion.txt")
+GIFTMC("[html]The expectation of a random variable which is Binomial with $$n=10$$ and $$\\pi=0.7$$ is ", c("0.7", "1", "7", "0.07"), rightans=3)
+sink()
+@
+
+
+
+
+\section{Questionnaires in Moodle}
+
+This code will produce a set of different questions which will possibly bleong
+to different categories. The use of categories is encouraged since it allows
+questions to be grouped into different topics. Moodle allows some customization
+on the group of questions. 
+
+For example, a questionnaire can be made of, say, 15 questions taken at random
+from different categories. The number of questions from each category can be
+set so that the student is assigned that number of questions at random among
+all the questions in that section. Altogether, the student's exam will have
+a fixed number of questions which come from the different categories at random 
+as specified.
+
+Regarding the output given to the student, the right answers and final score 
+can be shown once the questionnaire has been finished. However, in certain
+cases it may be better not to show the right answer immediately but
+after the end of the exam (to make sure that all students have finished).
+This is helpful to design questionnaire that include questions about different
+sections in the syllabus.
+
+Although setting up a Moodle environment may seem complex (as it will require a
+web server and other software), a virtual appliance could be used instead. This
+will provide a pre-installed system will all the required software. We have
+tried TurnkeyLinux (\verb+http://www.turnkeylinux.org/moodle+) to start a
+Moodle server in a few minutes. Among other features, this includes LDAP
+access so that external users can be authenticated and students can login
+using their university username and password.
+
+\section{Conclusions}
+
+In this paper we have introduced package \pkg{RGIFT} which provides a 
+convenient and easy way of producing different types of questions
+for on-line questionnaires. This can be fully imported into the
+Course Management System Moodle in order to develop on-line assessment,
+self study materials and on-line courses. 
+
+\section{Acknowledgements}
+
+This work has been partly funded by **proyecto innovación docente**
+
+
+%\bibliographystyle{spbasic}
+\bibliographystyle{plainnat}
+%\bibliography{RS_handbook_SpatStat_INLA}
+\bibliography{RGIFT}
+
+Carrera, E. (2002). Teaching statistics in secondary school. An overview: From the curriculum to reality. In B. Philips (Ed.), Proceedings of the Sixth International Conference on  Teaching of Statistics. Cape Town: IASE. CD ROM.
+
+Gal, I. (2002).  Adult?s statistical literacy. Meanings, components, responsabilities. International Statistical Review, 70(1), 1-25
+
+
+\appendix
+
+\section{Real Example}
+
+
+We have used \pkg{RGIFT} to produce a number of tests for the practicals of a
+first-year course in Statistics in the degrees in Computer Science and
+Industrial Engineering in the campus of Albacete (UCLM). These practicals are
+organised in seven two-hour sessions. Sessions one to six are used to train the
+students in the uses of \RR for descriptive and inferential statistics. In
+these sessions the last half hour is used to answer some questionnaire about
+the contects of the practical. These questionnaires is made of 15 different
+questions which are randomly selected from the pool of question for that
+practical. Each group of questions is assigned to a category depending on the
+practical and, sometimes, the topic (for example, linear regression or ANOVA).
+The students where allowed to repeat the test up to three times and the highest
+score was kept. The students where given the right answer and the final mark
+after they completed each test.
+
+The last session is an overall exam of the course practicals. Here, the
+students have the full two hours to complete the tests . As this exam needs to
+cover all topics, the categories where used to design a questionnaire where two
+questions where taken (at random) from the questions in previous practicals.
+The students were only given the total mark when they submitted the exam and
+the actual list of right ans wrong answer was available after all the students
+had taken the exams a few days later.
+
+In all cases, our aim was to provide each student with a similar (but
+different) list of questions so that all of them faced tests of similar
+complexity but in a way that prevented cheating.
+
+Also, we provided similar tests on the theoretical parts of the course so that
+they could take the tests at home and have immediate feedback on his knowledge
+of the topics in the course. Moodle keeps a record of the students' activities.
+In particular, for questionnaires the complete list of answer, socres, etc.
+is available so that the lecturers can provide a complete analysis of the
+responses. This is particularly interesting in order to find what parts of
+the syllabus the students have not understood well or particularly 
+difficult questions.
+
+
+%\verbatiminput{test_exam.R}
+** ICNLUDE R CODE TO PRODUCE THE TESTS **
+
+
+
+\end{document}

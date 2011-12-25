@@ -1,0 +1,5 @@
+//Examples of Essays
+
+$CATEGORY:  EQuestions 
+
+Write a few words about the R programming language. {}

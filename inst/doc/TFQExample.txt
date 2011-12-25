@@ -1,0 +1,10 @@
+//Examples of True-False Questions
+
+$CATEGORY:  TFQuestions 
+
+
+The mean of 1, 2, and 3 is 3?{TRUE}
+
+The command to compute the mean is sd(){FALSE}
+
+R is the best programming language ever!!{TRUE}
