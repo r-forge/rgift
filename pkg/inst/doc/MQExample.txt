@@ -1,0 +1,10 @@
+//Examples of Matching Questions
+
+$CATEGORY:  MQuestions 
+
+Match the following operations to their respective R commands:{
+=mean -> mean()=variance -> var()=standard deviation -> sd()}
+
+Match each vector with its mean:{
+=c(1,2,3) -> 2=c(4,5,6) -> 5=c(7,8,9) -> 8}
+
