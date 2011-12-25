@@ -132,11 +132,10 @@ can be given a lower positive weight.
 Question 2 is a similar answer where the right answer is the first one in the
 vector of possible answers (this is the default).  
 
-Question 3 is an example of a Multiple Choice question where there is a
-right answer which gives full mark, another not so good answer (which
-gives a 50\%) and wrong answers (with a penalty). Note how now the
-Multiple Answer flag is set (\code{MAnswer=TRUE}). As one of the answers
-provides the full mark, Moodle only allows a single answer to be chosen.
+Question 3 is an example of a Multiple Choice question where there is a right
+answer which gives full mark, another not so good answer (which gives a 50\%)
+and wrong answers (with a penalty).  As one of the answers provides the full
+mark, Moodle only allows a single answer to be chosen.
 
 Finally, Question 4 is an example of a trully Multiple Choice question where
 multiple answers must be chosen. Note that this is so because no single answer
@@ -313,7 +312,7 @@ A simple example in Spanish could be:
 \end{Sinput}
 \end{Schunk}
 \noindent
-Note that the previous text has been written in an environment with a
+Note that the previous text has been written in an environment with an
 ISO-8859-15 encoding. A good discussion on the use of different encodings
 in \RR can be found in the manual page of function \code{Encoding()}.
 
@@ -321,16 +320,16 @@ in \RR can be found in the manual page of function \code{Encoding()}.
 
 \subsection{Including images}
 
-Sometimes questions require the use of images that display data or summary
-results. In principle, this images should be among the files uploaded to
+Questions sometimes require the use of images that display data or summary
+results. In principle, these images should be among the files uploaded to
 Moodle.  Images can be uploaded to the course site in Moodle in a ZIP file and
 then uncompressed there.  Alternatively, the images can be created and stored
 in the same server but outside Moodle (for example, the lecturer's web site) so
 that they are linked from the question text using HTML tags.
 
-A convenient approach is to define an image repository and create all images
-in JPEG or PNG format. Then the images can be uploaded to the image repository
-and the complete link included in the question text. A simple example
+A convenient approach is to define an image repository and create all images in
+JPEG or PNG format. Then the images can be uploaded to the image repository and
+the specfific link to the image included in the question text. A simple example
 would look as follows:
 
 \begin{Schunk}
@@ -347,31 +346,13 @@ would look as follows:
 > hist(rexp(100, 1/(10*.25)), main="(c)", xlab="x")
 > hist(runif(100, 8, 12), main="(d)", xlab="x")
 > dev.off()
-\end{Sinput}
-\begin{Soutput}
-null device 
-          1 
-\end{Soutput}
-\begin{Sinput}
 > #Create question in HTML format
-> qtxt<-paste("[html]What\'s the histogram for a Binomial variable with n=10 and prob=0.25?\n<p>\n<img src=\'", repos, imgfile, "\'>\n<p>", sep="")
+> qtxt<-paste("[html]What\'s the histogram for a Binomial",
++    "variable with n=10 and prob=0.25?\n<p>\n<img src=\'", 
++    repos, imgfile, "\'>\n<p>", sep="")
 > #Print question
 > sink(file="imgqtion.txt", type="output")
 > GIFTMC(qtxt, c("(a)", "(b)", "(c)", "(d)"), rightans=1, wwrong="-33.333")
-\end{Sinput}
-\begin{Soutput}
-[html]What's the histogram for a Binomial variable with n=10 and prob=0.25?
-<p>
-<img src='http://www.uclm.es/profesorado/vgomez/imgtests/q1.png'>
-<p>
-{
-=(a)
-~%-33.333%(b)
-~%-33.333%(c)
-~%-33.333%(d)
-}
-\end{Soutput}
-\begin{Sinput}
 > sink()
 > 
 \end{Sinput}
@@ -384,7 +365,7 @@ be easily implemented in \RR.
 
 \subsection{Dealing with equations}
 
-Sometimes equations need to be included in the question text or in the answers.
+In some cases equations need to be displayed in the question text or in the answers.
 Moodle supports many different ways of including equations (see 
 \verb+http://docs.moodle.org/22/en/Mathematics+). However, when producing
 questions, it is necessary to include the equations within the question text.
@@ -396,10 +377,13 @@ before and after the equation). For example:
 \begin{Schunk}
 \begin{Sinput}
 > sink(file="eqqtion.txt")
-> GIFTMC("[html]The expectation of a random variable which is Binomial with $$n=10$$ and $$\\pi=0.7$$ is ", c("0.7", "1", "7", "0.07"), rightans=3)
+> qtxt<-paste("[html]The expectation of a random variable which is \n",
++    "Binomial with $$n=10$$ and $$\\pi=0.7$$ is ", sep="")
+> GIFTMC(qtxt, c("0.7", "1", "7", "0.07"), rightans=3)
 \end{Sinput}
 \begin{Soutput}
-[html]The expectation of a random variable which is Binomial with $$n=10$$ and $$\pi=0.7$$ is 
+[html]The expectation of a random variable which is 
+Binomial with $$n=10$$ and $$\pi=0.7$$ is 
 {
 ~%0%0.7
 ~%0%1
@@ -415,26 +399,24 @@ before and after the equation). For example:
 
 
 
-\section{Questionnaires in Moodle}
+\section{Design and use of questionnaires in Moodle}
 
-This code will produce a set of different questions which will possibly bleong
-to different categories. The use of categories is encouraged since it allows
-questions to be grouped into different topics. Moodle allows some customization
-on the group of questions. 
+The previous examples can be used to create a set of different questions which
+will possibly belong to different categories. The use of categories is
+encouraged since it allows questions to be grouped into different topics.
+Moodle allows some customization on the group of questions. 
 
 For example, a questionnaire can be made of, say, 15 questions taken at random
 from different categories. The number of questions from each category can be
-set so that the student is assigned that number of questions at random among
-all the questions in that section. Altogether, the student's exam will have
-a fixed number of questions which come from the different categories at random 
-as specified.
+set as well, so that all students will have the same number of questions (taken
+at random) from each category.  This is helpful to design questionnaires that
+include questions about different sections in the syllabus.
 
-Regarding the output given to the student, the right answers and final score 
-can be shown once the questionnaire has been finished. However, in certain
-cases it may be better not to show the right answer immediately but
-after the end of the exam (to make sure that all students have finished).
-This is helpful to design questionnaire that include questions about different
-sections in the syllabus.
+Regarding the output given to the student, the right answers and final score
+can be shown once the questionnaire has been finished and the answers
+submitted. However, in certain cases it may be better not to show the right
+answers immediately and wait until the end of the exam (to make sure that all
+students have finished).  
 
 Although setting up a Moodle environment may seem complex (as it will require a
 web server and other software), a virtual appliance could be used instead. This
@@ -442,7 +424,50 @@ will provide a pre-installed system will all the required software. We have
 tried TurnkeyLinux (\verb+http://www.turnkeylinux.org/moodle+) to start a
 Moodle server in a few minutes. Among other features, this includes LDAP
 access so that external users can be authenticated and students can login
-using their university username and password.
+using their university username and password. Hence, lecturers can set up
+a complete Moodle system in the local network.
+
+\section{Real Example}
+
+
+We have used \pkg{RGIFT} to produce a number of tests for the practicals of a
+first-year course in Statistics in the degrees in Computer Science and
+Industrial Engineering in the campus of Albacete (University of Castilla-La
+Mancha). These practicals are organised in seven two-hour sessions. Sessions
+one to six are used to train the students in the uses of \RR for descriptive
+and inferential statistics. In these sessions the last 30 minutes are used to
+answer a questionnaire about the contents of the practical. These
+questionnaires are made of 15 different questions which are randomly selected
+from the pool of question for that practical. Each group of questions is
+assigned to a category depending on the practical and, sometimes, the topic
+(for example, linear regression or ANOVA).
+The students where allowed to repeat the test up to three times and the highest
+score was kept. The students where given the right answers and mark
+after they completed each test.
+
+The last session is an overall exam of the course practicals. Here, the
+students have two hours to complete the questionnaire. As this exam needs to
+cover all topics, the categories where used to design a questionnaire where two
+questions where taken (at random) from the questions in previous practicals.
+The students were only given the total mark when they submitted the exam and
+the actual list of right ans wrong answers was available after all the students
+had taken the exams a few days later.
+
+In all cases, our aim was to provide each student with a similar (but
+different) list of questions so that all of them faced tests of similar
+complexity but in a way that prevented cheating.
+The code to produce these questions is available in files 
+\verb+test_exam-en.R+ (in English) and \verb+test_exam-es.R+ (in Spanish).
+
+Also, we provided similar tests on the theoretical parts of the course so that
+they could take the tests at home and have immediate feedback on his knowledge
+of the topics in the course. Moodle keeps a record of the students' activities.
+In particular, for questionnaires the complete list of answer, socres, etc.  is
+available so that the lecturers can provide a complete analysis of the
+responses. This is of interest in order to find what parts of the syllabus the
+students have not understood well or particularly difficult questions.
+
+
 
 \section{Conclusions}
 
@@ -454,7 +479,9 @@ self study materials and on-line courses.
 
 \section{Acknowledgements}
 
-This work has been partly funded by **proyecto innovación docente**
+This work is part of project ``MatemáTICas con software libre'' funded by
+Consejería de Educación y Ciencia, Junta de Comunidades de Castilla-La Mancha
+for 2010-2012.
 
 
 %\bibliographystyle{spbasic}
@@ -467,49 +494,11 @@ Carrera, E. (2002). Teaching statistics in secondary school. An overview: From t
 Gal, I. (2002).  Adult?s statistical literacy. Meanings, components, responsabilities. International Statistical Review, 70(1), 1-25
 
 
-\appendix
-
-\section{Real Example}
-
-
-We have used \pkg{RGIFT} to produce a number of tests for the practicals of a
-first-year course in Statistics in the degrees in Computer Science and
-Industrial Engineering in the campus of Albacete (UCLM). These practicals are
-organised in seven two-hour sessions. Sessions one to six are used to train the
-students in the uses of \RR for descriptive and inferential statistics. In
-these sessions the last half hour is used to answer some questionnaire about
-the contects of the practical. These questionnaires is made of 15 different
-questions which are randomly selected from the pool of question for that
-practical. Each group of questions is assigned to a category depending on the
-practical and, sometimes, the topic (for example, linear regression or ANOVA).
-The students where allowed to repeat the test up to three times and the highest
-score was kept. The students where given the right answer and the final mark
-after they completed each test.
-
-The last session is an overall exam of the course practicals. Here, the
-students have the full two hours to complete the tests . As this exam needs to
-cover all topics, the categories where used to design a questionnaire where two
-questions where taken (at random) from the questions in previous practicals.
-The students were only given the total mark when they submitted the exam and
-the actual list of right ans wrong answer was available after all the students
-had taken the exams a few days later.
-
-In all cases, our aim was to provide each student with a similar (but
-different) list of questions so that all of them faced tests of similar
-complexity but in a way that prevented cheating.
-
-Also, we provided similar tests on the theoretical parts of the course so that
-they could take the tests at home and have immediate feedback on his knowledge
-of the topics in the course. Moodle keeps a record of the students' activities.
-In particular, for questionnaires the complete list of answer, socres, etc.
-is available so that the lecturers can provide a complete analysis of the
-responses. This is particularly interesting in order to find what parts of
-the syllabus the students have not understood well or particularly 
-difficult questions.
-
-
-%\verbatiminput{test_exam.R}
-** ICNLUDE R CODE TO PRODUCE THE TESTS **
+%\appendix
+%
+%\section{Code for practicals}
+%
+%\verbatiminput{test_exam-en.R}
 
 
 

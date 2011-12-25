@@ -1,11 +1,13 @@
-GIFTSA<-function(qtxt, anstxt, wright="100",  MAnswer=FALSE)
+GIFTSA<-function(qtxt, anstxt, wright="100")
 {
 
+
         #Split weight of right answer among all right answers
-        if(MAnswer)
+        if(length(anstxt)>1)
 	{
 		if(length(anstxt)!=length(wright))
-		stop("Number of right answers and weights differ.")
+		warning("Number of right answers and weights differ.")
+		wright<-rep(wright, length.out=length(anstxt))
 	}
 	else
 	{

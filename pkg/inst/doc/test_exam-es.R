@@ -614,7 +614,7 @@ sol2<-as.character(round(c(coef(m1)[[2]], coef(m1)[[1]], coef(m2)[[2]]), 4))
 }
 
 #FIN
-sink(NULL)
+sink()
 
 
 #Convertimos a UTF-8 (SÓLO funcionará en Linux) el fichero

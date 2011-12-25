@@ -3,6 +3,7 @@
 \alias{GIFTcomment}
 \alias{GIFTcategory}
 \alias{GIFTQName}
+\alias{GIFTparse}
 
 \title{Some functions to create questionnaires in the GIFT format.}
 

@@ -1,6 +1,5 @@
 
-GIFTMC<-function(qtxt, anstxt, rightans=1, wright=NULL, wwrong=NULL, 
-   MAnswer=FALSE)
+GIFTMC<-function(qtxt, anstxt, rightans=1, wright=NULL, wwrong=NULL)
 {
 
 	if(is.null(wright))
@@ -11,7 +10,7 @@ GIFTMC<-function(qtxt, anstxt, rightans=1, wright=NULL, wwrong=NULL,
 
 
 	#Split weight of right answer among all right answers
-	if(MAnswer)
+	if(length(rightans)>1)
 	{
 		if(length(rightans)!=length(wright))
 			stop("Number of right answers and weights differ.")

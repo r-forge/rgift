@@ -240,12 +240,12 @@ pregunta("To show the names of the variable in data.frame X:",
    c("names(X)", "variables(X)", "None of the above")
 )
 
-#Preguntas del fichero CochesBig.sav
+#Questions about data set CochesBig.sav
 library(foreign)
 cochesbig<-read.spss("CochesBig.sav", to.data.frame = TRUE)
 
-variables<-names(cochesbig)
-marcas<-levels(cochesbig$marca)
+variables<-names(cochesbig)#List of all variables names
+marcas<-levels(cochesbig$marca)#Manufaturers/brands
 
 for(v in variables[1:3])
 for(m in marcas[1:5])
@@ -296,23 +296,23 @@ for(m in seq(10, 25, by=5))
 {
 for(ss in seq(30, 50, by=10))
 {
-	preg1<-paste("Si tengo una población de media ", m, " y calculo 1000 intervalos de confianza al 95% con muestras de tamaño ", ss, " de esa población:", sep="")
-	sol1<-c("Ninguna de las dos", paste("No se puede saber aproximadamente el número de intervalos que contendrán al ", m, "", sep=""), paste("Más del 95% de los intervalos contendrán el valor ", m, sep=""))
+	preg1<-paste("Given a Normal population with mean ", m, " if I compute 1000 95% confidence intervals with samples of size ", ss, " from that population:", sep="")
+	sol1<-c("None of the above", paste("It is not possible to know how many intervals will contain value ", m, "", sep=""), paste("More than 95% of the intervals will contain value ", m, sep=""))
 	pregunta(preg1, sol1)
 
 
 	for(dt in seq(20, 50, by=10))
 	{
-preg2<-paste("Si tengo una variable aleatoria con media ", m, " y desviación típica ", dt, ". ¿Cuál es la desviación típica de la variable media de las muestras de tamaño ", ss, "?", sep="")
+preg2<-paste("Let X_i be a Normal random variable with mean ", m, " and standard deviation ", dt, ". What is the standard deviation of the mean of a sample of size ", ss, "?", sep="")
 sol2<-c(paste(dt, "/sqrt(", ss,")", sep=""),
-   paste(dt, ", la misma que la de la variable original", sep=""),
-   "Ninguna de las dos")
+   paste(dt, ", same as X_i", sep=""),
+   "None of the above")
 pregunta(preg2, sol2)
 
-preg3<-paste("Si tengo una variable aleatoria con media ", m, " y desviación típica ", dt, ". ¿Cuál es la media de la variable media de las muestras de tamaño ", ss, "?", sep="")
-sol3<-c(paste(m, ", la misma que la de la variable original", sep=""),
+preg3<-paste("Let X_i be a Normal random variable with mean ", m, " and standard deviation ", dt, ". What is the mean of the average of a sample of size ", ss, "?", sep="")
+sol3<-c(paste(m, ", same as X_i", sep=""),
 paste(dt, "/sqrt(", ss,")", sep=""),
-   "Ninguna de las dos")
+   "None of the above")
 pregunta(preg3, sol3)
 
 
@@ -323,7 +323,7 @@ pregunta(preg3, sol3)
 
 
 
-#Intervalos de confianza  y contrastes con los datos de cochesbig
+#COnfidence intervals and tests based on  cochesbig
 lm0<-as.list(apply(as.matrix(cochesbig[,1:3]), 2, mean))
 
 
@@ -333,12 +333,12 @@ for(v in variables[1:3])
 {
 	m0<-round(lm0[[v]]*runif(1, .75,1.25))
 
-	preg1<-paste("Utilizando el archivo CochesBig.sav. La media de ", v,
-  " puede ser ", m0, " con una confianza del ", conf,"%", sep="")
+	preg1<-paste("Using data set CochesBig.sav. The mean of ", v,
+  " can be ", m0, " with a ", conf,"% confidence.", sep="")
 
-	sol1<-c(paste("Sí, ya que ese valor está dentro del intervalo de confianza al ",conf,"%", sep=""),
-   paste("No, porque la media vale ",round(mean(cochesbig[,v]), 2), sep=""),
-   "Ninguna de las dos")
+	sol1<-c(paste("Yes, becuase that value is inside the ",conf,"% confidence interval", sep=""),
+   paste("No, because the mean is ",round(mean(cochesbig[,v]), 2), sep=""),
+   "None of the above")
 
 	tt<-t.test(cochesbig[,v], mu=m0, conf.level=conf/100)
 
@@ -351,20 +351,18 @@ for(v in variables[1:3])
 
 	}
 
-	preg2<-paste("Utilizando el archivo CochesBig.sav. Un intervalo de confianza al ", conf,   "% de confianza para la variable ", v, "es:", sep="")
+	preg2<-paste("Using data set CochesBig.sav. A ", conf,   "% confidence interval for variable ", v, "is:", sep="")
  
 	sol2<-c(paste("(", paste(round(as.numeric(tt$conf.int), 4), collapse=", "), ")", sep=""),
    paste("(", paste(5+round(.9*as.numeric(tt$conf.int), 4), collapse=", "), ")", sep=""),
-   "Ninguna de las dos preguntas es correcta")
+   "None of the above")
 
 }
 }
 
-#AÑADIR: contraste de hipótesis proporciones,
 
 
-
-#Contrastes para proporciones
+#Tests of proportions
 
 for( conf in seq(80, 99, by=5))
 {
@@ -374,16 +372,16 @@ for(x in seq(5, 10, by=5))
 {
 	p0<-round((x/n)*runif(1,.75,5), 2)
 
-	preg1<-paste("En una fábrica se inspeccionaron ", n, 
-   " piezas, de las que ", x, " resultaron ser defectuosas. ",
-   "Con un ", conf, "% de confianza, ¿hay evidencia de que la",
-   " proporción de piezas defectuosas sea igual a ", p0,"?", sep="")
+	preg1<-paste("In a factory, ", n, 
+   " pieces were inspected and ", x, " of them were found to be defectuous. ",
+   " With a confidence of ", conf, "%, is there any evidence that",
+   " the proportion of defectuous pieces is equal to ", p0,"?", sep="")
 
 	ttp<-prop.test(x,n, p=p0, conf.level=conf/100)
 
-	sol1<-c(paste("Sí, porque ese valor está en el intervalo de confianza",sep=""),
-   paste("No porque la proporción observada es ", round(x/n, 4), sep=""),
-   "Ninguna de las dos")
+	sol1<-c(paste("Yes, because that value is inside the confidence interval.",sep=""),
+   paste("No because the observed proportion is ", round(x/n, 4), sep=""),
+   "None of the above")
 
 	if( ttp$p.value>(1-conf/100) )
 	{
@@ -395,13 +393,13 @@ for(x in seq(5, 10, by=5))
 	}
 
 
-	preg2<-paste("En una fábrica se inspeccionaron ", n,
-   " piezas, de las que ", x, " resultaron ser defectuosas. ",
-"Un intervalo de confianza al ", conf,   "% de confianza para la proporción de piezas defectuosas es", sep="")
+	preg2<-paste("In a factory ", n,
+   " pieces were inspected and ", x, " of them were found to be defectuous. ",
+"A ", conf,   "% confidence interval for the proportion of defectuous pieces is", sep="")
 
         sol2<-c(paste("(", paste(round(as.numeric(ttp$conf.int), 4), collapse=", "), ")", sep=""),
    paste("(", paste(.15+round(1.1*as.numeric(ttp$conf.int), 4), collapse=", "), ")", sep=""),
-   "Ninguna de las dos preguntas es correcta")
+   "None of the above")
 	pregunta(preg2, sol2)
 
 
@@ -410,20 +408,16 @@ for(x in seq(5, 10, by=5))
 }
 
 
-#NOTA: Podemos poner  que calculen alguna probabilidad sobre 
-#la variable promedio de algunos datos, o contrastes de dos poblaciones
-
-
 
 #
-#Práctica 5
+#Practical 5:
 #
 
 
 cat("\n\n$CATEGORY: Ex_Pr5\n\n")
 
 
-#Contraste de la media de dos poblaciones
+#Test on the means of two populations
 for(conf in seq(80, 99, by=5))
 for(m1 in seq(100, 110, by=5))
 for(m2 in seq(90, 100, by=5))
@@ -434,20 +428,20 @@ for(sigma in seq(5, 5, by=1))
 	set.seed(conf*m1*m2*sigma+1)
 	mujeres<-round(rnorm(10, m2, sigma), 2)
 
-	preg<-paste("Con los siguientes datos:\\n\\n", 
-    "Coeficientes de inteligencia chicas: ",
+	preg<-paste("Consider the following data:\\n\\n", 
+    "Girls' IQ: ",
     deparse(mujeres, width.cutoff=100L), "\\n\\n",
-    "Coeficientes de inteligencia chicos: ",
+    "Boys' IQ: ",
     deparse(hombres, width.cutoff=100L), "\\n\\n", sep="")
 
 
    #Contraste
     preg1<-paste(preg, 
-   "¿Podemos considerar las medias de chicos y chicas iguales? ",
+   "Could we say that the mean IQ for boys and girls is the same? ",
     "Considera un nivel de significación de ", 1-conf/100, ".", sep="")
 
 
-   sol1<-c("Sí", "No", "Faltan datos")
+   sol1<-c("Yes", "No", "We need more data")
 
    tt<-t.test(mujeres, hombres, conf.level=conf/100)
 
@@ -462,8 +456,8 @@ for(sigma in seq(5, 5, by=1))
 
 
    #p-valor
-   preg2<-paste(preg, "El p-valor del contraste de igualdad de medias es:", sep="")
-   sol2<-c(as.character(tt$p.value), as.character(1-tt$p.value), "Ninguno de los dos")
+   preg2<-paste(preg, "The p-value associated to the test is:", sep="")
+   sol2<-c(as.character(tt$p.value), as.character(1-tt$p.value), "None of the above")
    pregunta(preg2, sol2)
 
 }
@@ -475,18 +469,18 @@ for(n2 in seq(90, 100, by=10))
 for(x2 in seq(5, 10, by=3))
 for( conf in seq(80, 99, by=5))
 {
-	preg<-paste("Para contrastar dos proporciones tomamos dos muestras ",
-    "procedentes de dos poblaciones distintas de tamaños ", n1, " y ", n2,
-    ", obteniendo los siguientes resultados:\\n\\n Éxitos en la primera muestra ",
-    x1, "\\n\\nÉxitos en la segunda muestra ", x2, ".\\n\\n", sep="")
+	preg<-paste("In order to test two rates two samples ",
+    "are taken from two different populations. Their sample sizes are ", n1, " y ", n2,
+    ", and the following values were obtained:\\n\\n Number of successes in the first sample: ",
+    x1, "\\n\\nNumber of sucesses in the second smaple: ", x2, ".\\n\\n", sep="")
 
 
    #Contraste de medias
    preg1<-paste(preg, 
-  "¿Podemos aceptar la igualdad de proporciones con un nivel de confianza del ",
+  "COuld we say that these two rates are equal with a confidence level of  ",
   conf, "%?", sep="") 
 
-	sol1<-c("Sí", "No", "Faltan datos")
+	sol1<-c("Yes", "No", "More data are needed.")
 
 	ttp<-prop.test(c(x1,x2), c(n1, n2), conf.level=conf/100)
 
@@ -500,7 +494,7 @@ for( conf in seq(80, 99, by=5))
 
 
    #p-valor
-   preg2<-paste(preg, "El p-valor del contraste de igualdad de proporciones es:", sep="")
+   preg2<-paste(preg, "The p-value associated to the test is:", sep="")
    sol2<-c(as.character(ttp$p.value), as.character(1-ttp$p.value), "Ninguno de los dos")
    pregunta(preg2, sol2)
 
@@ -508,7 +502,7 @@ for( conf in seq(80, 99, by=5))
 
 
 #
-#Práctica 6
+#Practical 6: Linear regression and ANOVA
 #
 
 #ANOVA
@@ -532,7 +526,7 @@ catalizador<-data.frame(catalizador=rep(c("C1","C2","C3"), each=3),
 aovcat<-aov(produccion~catalizador, data=catalizador)
 saovcat<-summary(aovcat)
 
-preg<-"Un experimento se realizó para medir la producción proporcionada por cada uno de tres catalizadores en cierta reacción. El experimento se repitió tres veces. Las producciones en gramos son:\\n\\n"
+preg<-"An experiment was made to measure the production realted to three different catalyzers used in an industrial process. The experiments was repeated three times for each catalyzer. Productions in grams were:\\n\\n"
 
 
 	preg<-paste(preg, "Catalizador 1:", paste(x1, collapse=","), "\\n\\n")
@@ -541,42 +535,40 @@ preg<-"Un experimento se realizó para medir la producción proporcionada por cada
 
 
 	#CM ENTRE
-	preg1<-paste(preg, "¿Cuál es el cuadrado medio de la variabilidad entre grupos?", sep="")
-	sol1<-c(as.character(round(saovcat[[1]]$"Mean Sq", 4)), "Ninguno de los dos")
+	preg1<-paste(preg, "The Mean Square of the variability between groups is:", sep="")
+	sol1<-c(as.character(round(saovcat[[1]]$"Mean Sq", 4)), "None of the above")
 	pregunta(preg1, sol1)
 
 	#CM DENTRO
-	preg2<-paste(preg, "¿Cuál es el cuadrado medio de la variabilidad dentro de los grupos (o residual)?", sep="")
-	sol2<-c(as.character(round(saovcat[[1]]$"Mean Sq"[2:1], 4)), "Ninguno de los dos")
+	preg2<-paste(preg, "The Mean Square of the variability within groups is:", sep="")
+	sol2<-c(as.character(round(saovcat[[1]]$"Mean Sq"[2:1], 4)), "None of the above")
 	pregunta(preg2, sol2)
 
 	#Estadístico de contraste
-	preg3<-paste(preg, "¿Cuál es el valor del estadístico de contraste?", sep="")
+	preg3<-paste(preg, "The value of the test statistic is:", sep="")
 	sol3<-round(c(saovcat[[1]]$"F value"[1], saovcat[[1]]$"Pr(>F)"[1], 
    saovcat[[1]]$"Df"[1]), 4)
 	sol3<-as.character(sol3)
 	pregunta(preg3, sol3)
 
 	#p-valor
-	preg4<-paste(preg, "¿Cuál es el p-valor del contraste?", sep="")
+	preg4<-paste(preg, "The p-value of the test is:", sep="")
 	sol4<-round(c(saovcat[[1]]$"Pr(>F)"[1], saovcat[[1]]$"F value"[1], 
    saovcat[[1]]$"Df"[1]), 4)
 	sol4<-as.character(sol4)
 	pregunta(preg4, sol4)
-
-
 }
 
 
 
-#Regresión lineal
+#Linear regression
 cat("\n\n$CATEGORY: Ex_Pr6_RL\n\n")
 
 lpred<-list(pvp=10000, emision=200, potencia=150, costecar=800, nplaza=3)
 
 for(v in c("pvp", "emision", "potencia", "costecar", "nplaza"))
 {
-preg<-paste("Sea el fichero de datos cochesBig.sav. Considera el modelo lineal en el que usamos la variable ", v," para explicar el consumo. ", sep="")
+preg<-paste("Using the cochesBig.sav data set, consider the linear model where variable  ", v," is used to explain 'consumo'. ", sep="")
 
 	f1<-as.formula(paste("consumo", v, sep="~"))
 	f2<-as.formula(paste(v, "consumo", sep="~"))
@@ -585,34 +577,35 @@ preg<-paste("Sea el fichero de datos cochesBig.sav. Considera el modelo lineal e
 	m2<-lm(f2, data=cochesbig)
 
 	#Interceptación
-	preg1<-paste(preg, "¿Cuál es el valor del término independiente de ese modelo?", sep="")
+	preg1<-paste(preg, "What is the independent term in the model?", sep="")
 sol1<-as.character(round(c(coef(m1)[[1]], coef(m1)[[2]], coef(m2)[[1]]), 4))
 	pregunta(preg1, sol1)
 
 
 
 	#Coeficiente
-	preg2<-paste(preg, "¿Cuál es el valor del coeficiente de la variable explicativa de ese modelo?", sep="")
+	preg2<-paste(preg, "What's the value of the regression coefficient of the predictive variable in the model?", sep="")
 sol2<-as.character(round(c(coef(m1)[[2]], coef(m1)[[1]], coef(m2)[[2]]), 4))
 	pregunta(preg2, sol2)
 
 
 	#Predicción
-	preg3<-paste(preg, "¿Cuál es el valor de consumo que me predice el modelo para un coche de ", v, " de ", lpred[v][[1]],"?", sep="")
+	preg3<-paste(preg, "What is the value of 'consumo' for a car with a value of ",  
+        v, " of ", lpred[v][[1]],"?", sep="")
 	sol3<-as.character(round(c(predict(m1, as.data.frame(lpred[v]))[[1]],
    predict(m1, .5*as.data.frame(lpred[v]))[[1]]),4))
-	sol3<-c(sol3, "Ninguno de los dos")
+	sol3<-c(sol3, "None of the above")
 	pregunta(preg3, sol3)
 }
 
 #FIN
-sink(NULL)
+sink()
 
 
-#Convertimos a UTF-8 (SÓLO funcionará en Linux) el fichero
-system("iconv -f ISO-8859-1 -t UTF8 test_examen.txt>kk.txt")
-system("cp kk.txt test_examen.txt")
-system("rm kk.txt")
+#Convert file to UTF-8 (this will only work on LInux)
+#system("iconv -f ISO-8859-1 -t UTF8 test_examen.txt>kk.txt")
+#system("cp kk.txt test_examen.txt")
+#system("rm kk.txt")
 
 
 
