@@ -1,8 +1,14 @@
 #
 #Genera las preguntas para el examen
 #
+#Tenemos que ejecutar echo("test_exam-es.R")
+#para que no nos meta basurilla
 
-source("preguntas.R")
+library(RGIFT)
+
+#Redefine function to set default values. This has been done to
+#simplify the modifications in the original file
+pregunta<-function(qtxt, atxt){GIFTMC(qtxt, atxt, wwrong="-33.333")}
 
 
 #Set locale to UTF-8
@@ -10,8 +16,6 @@ source("preguntas.R")
 
 #Fichero en el que escribimos el test
 #
-#Tenemos que ejecutar echo("test_examen.R", echo=FALSE)
-#para que no nos meta basurilla
 #
 
 #Fichero en el que guardamos las preguntas del test en formato GIFT

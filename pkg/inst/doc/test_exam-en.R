@@ -1,17 +1,17 @@
 #
 #Produce questions for a exam
 #
+#Run this sript using echo("test_exam-en.R") to avoid
+#garbage in the output  file
+#
 
 library(RGIFT)
 
 
-#Run this sript using echo("test_examen.R", echo=FALSE) to avoid
-#garbage in the output  file
-#
 
 #Redefine function to set default values. This has been done to
 #simplify the modifications in the original file
-pregunta<-function(qtxt, atxt){GIFTMC(atxt, atxt, wwrong="-33.333")}
+pregunta<-function(qtxt, atxt){GIFTMC(qtxt, atxt, wwrong="-33.333")}
 
 
 #Set file where the questions are saved
