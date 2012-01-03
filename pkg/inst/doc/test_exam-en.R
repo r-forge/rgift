@@ -33,28 +33,28 @@ for(i in 1:5)#5 different data sets
      preg<-paste("Consider the following vector:\\n\\n", deparse(x, width.cutoff=100L),
    "\\n\\n", sep="")
 
-	#Media
+	#Mean
 	preg1<-paste(preg, "Its mean is:")
 	sol1<-as.character(mean(x)*c(1,.9, 1.1))
 	pregunta(preg1, sol1)
 
-	#Desviación típica
+	#Standard deviation
 	preg2<-paste(preg, "Its standard deviation is:")
 	sol2<-as.character(sd(x)*c(1,.5, 1.5))
 	pregunta(preg2, sol2)
 
-	#Varianza
+	#Variance
 	preg2b<-paste(preg, "Its variance is:")
 	sol2b<-as.character(var(x)*c(1, .5, 1.5))
 	pregunta(preg2b, sol2b)
 
-	#Cuantil 0'40
+	#0'40 Quantile
 	preg3<-paste(preg, "Its 0.40 quantile is:")
 	sol3<-as.character(quantile(x, .4)*c(1,.75,1.25))
 	pregunta(preg3, sol3)
 
 
-	#Cuantil 0'90
+	#0'90 Quantile
 	preg4<-paste(preg, "Its 0.90 quantile is:")
 	sol4<-as.character(quantile(x, .9)*c(1,.75,1.25))
 	pregunta(preg4, sol4)
