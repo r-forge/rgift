@@ -18,7 +18,7 @@ pregunta<-function(qtxt, atxt){GIFTMC(qtxt, atxt, wwrong="-33.333")}
 sink("test_exam.txt")
 
 #
-#Practical 1: Intro to R
+#Computer Lab 1: Intro to R
 #
 #cat("\n\n$CATEGORY: Ex_Pr1\n\n")
 GIFTcategory("Ex_Pr1")
@@ -98,7 +98,7 @@ pregunta("A pie chart is done for ",
 
 
 #
-#Practical 2: Simulation with R (I)
+#Computer Lab 2: Simulation with R (I)
 #
 #cat("\n\n$CATEGORY: Ex_Pr2\n\n")
 GIFTcategory("Ex_Pr2")
@@ -220,7 +220,7 @@ for(i in 1:ndistr)
 
 
 #
-#Practical 3:  Simulation with R (II)
+#Computer Lab 3:  Simulation with R (II)
 #
 
 #cat("\n\n$CATEGORY: Ex_Pr3\n\n")
@@ -282,7 +282,7 @@ for(m in marcas[1:5])
 
 
 #
-#Practical 4: Central Limit Theorem
+#Computer Lab 4: Central Limit Theorem
 #
 
 
@@ -420,7 +420,7 @@ for(x in seq(5, 10, by=5))
 
 
 #
-#Practical 5:
+#Computer Lab 5:
 #
 
 
@@ -512,7 +512,7 @@ for( conf in seq(80, 99, by=5))
 
 
 #
-#Practical 6: Linear regression and ANOVA
+#Computer Lab 6: Linear regression and ANOVA
 #
 
 #ANOVA
