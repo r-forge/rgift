@@ -2,7 +2,7 @@
 library(RGIFT)
 
 
-Sys.setlocale(locale="es_ES.iso-8859-15")
+Sys.setlocale(locale="es_ES.iso-8859-1")
 txt<-"¿Es Madrid la capital de España?"
 
 #Get Local enconding:
