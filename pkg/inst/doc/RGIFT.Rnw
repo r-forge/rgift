@@ -285,7 +285,7 @@ A simple example in Spanish could be:
 
 \verbatiminput{UTF8.R}
 <<>>=
-source("UTF8.R")
+source("UTF8.R", encoding="ISO-8859-1")
 @
 \noindent
 Note that the previous text has been written in an environment with an
