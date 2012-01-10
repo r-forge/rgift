@@ -424,7 +424,7 @@ complexity but in a way that prevented cheating.
 The code to produce these questions is available in files 
 \verb+test_exam-en.R+ (in English) and \verb+test_exam-es.R+ (in Spanish)
 in directory \verb+RGIFT/doc/exams+ and can be easily view using, for example,
-\verb+vi(file=system.file("doc/exams/test_exam-es.R", package="RGIFT"))+.
+\code{vi(file=system.file("doc/exams/test\_exam-es.R", package="RGIFT"))}.
 
 Also, we provided similar tests on the theoretical parts of the course so that
 they could take the tests at home and have immediate feedback on his knowledge
