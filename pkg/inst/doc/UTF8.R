@@ -14,7 +14,7 @@ locale<-Sys.getlocale("LC_CTYPE")
 encod<-strsplit(locale, "\\.|@")[[1]][2]
 
 
-Sys.setlocale(locale="es_ES.utf8")
+Sys.setlocale(locale="es_ES.UTF-8")
 
 txt2<-iconv(txt, encod, "UTF8")
 
