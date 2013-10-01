@@ -1,6 +1,0 @@
-//Examples of Descriptions
-
-$CATEGORY:  DQuestions 
-
-R is a language for data analysis.
-

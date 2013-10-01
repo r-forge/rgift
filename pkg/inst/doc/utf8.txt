@@ -1,2 +1,0 @@
-
-¿Es Madrid la capital de España?{TRUE}
