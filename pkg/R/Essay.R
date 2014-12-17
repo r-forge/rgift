@@ -1,4 +1,4 @@
 GIFTE<-function(qtxt)
 {
-	cat(qtxt, " {}", sep="")
+	cat(qtxt, " {}\n\n", sep="")
 }
