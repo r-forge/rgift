@@ -36,7 +36,7 @@ No value is returned but some text in printed.
 }
 
 \seealso{
-\url{http://docs.moodle.org/21/en/GIFT_format}
+\url{https://docs.moodle.org/21/en/GIFT_format}
 }
 
 \author{Virgilio Gómez-Rubio <virgilio.gomez@uclm.es>}
