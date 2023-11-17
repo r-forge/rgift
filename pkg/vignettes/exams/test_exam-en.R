@@ -556,7 +556,7 @@ preg<-"An experiment was made to measure the production related to three differe
 	sol2<-c(as.character(round(saovcat[[1]]$"Mean Sq"[2:1], 4)), "None of the above")
 	pregunta(preg2, sol2)
 
-	#Estadístico de contraste
+	#EstadÃ­stico de contraste
 	preg3<-paste(preg, "The value of the test statistic is:", sep="")
 	sol3<-round(c(saovcat[[1]]$"F value"[1], saovcat[[1]]$"Pr(>F)"[1], 
    saovcat[[1]]$"Df"[1]), 4)

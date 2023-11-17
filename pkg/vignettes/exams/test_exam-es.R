@@ -22,7 +22,7 @@ pregunta<-function(qtxt, atxt){GIFTMC(qtxt, atxt, wwrong="-33.333")}
 sink("test_examen.txt")
 
 #
-#Práctica 1
+#PrÃ¡ctica 1
 #
 cat("\n\n$CATEGORY: Ex_Pr1\n\n")
 
@@ -41,8 +41,8 @@ for(i in 1:5)#5 vectores de datos distintos
 	sol1<-as.character(mean(x)*c(1,.9, 1.1))
 	pregunta(preg1, sol1)
 
-	#Desviación típica
-	preg2<-paste(preg, "Su desviación típica es:")
+	#DesviaciÃ³n tÃ­pica
+	preg2<-paste(preg, "Su desviaciÃ³n tÃ­pica es:")
 	sol2<-as.character(sd(x)*c(1,.5, 1.5))
 	pregunta(preg2, sol2)
 
@@ -66,19 +66,19 @@ for(i in 1:5)#5 vectores de datos distintos
 
 
 #Algunas preguntas de instrucciones
-pregunta("Si quiero saber la longitud de unos datos en R, utilizo la función:",
+pregunta("Si quiero saber la longitud de unos datos en R, utilizo la funciÃ³n:",
    c("length()", "long()", "Ninguna de las dos")
 )
 
-pregunta("Para realizar un diagrama de barras utilizo la función",
+pregunta("Para realizar un diagrama de barras utilizo la funciÃ³n",
    c("barplot", "plot", "Ninguna de las dos")
 )
 
-pregunta("Para realizar un histograma utilizo la función",
+pregunta("Para realizar un histograma utilizo la funciÃ³n",
    c("Ninguna de las dos","histo", "h")
 )
 
-pregunta("Para calcular la raíz cuadrada de 13 utilizo",
+pregunta("Para calcular la raÃ­z cuadrada de 13 utilizo",
    c("sqrt(13)", "sd(13)", "str(13)")
 )
 
@@ -86,22 +86,22 @@ pregunta("Para calcular el factorial de 5 utilizo",
    c("factorial(5)", "facto(5)", "f(5)")
 )
 
-pregunta("Para generar 10 valores entre 0 y 5, usaré",
+pregunta("Para generar 10 valores entre 0 y 5, usarÃ©",
    c("seq(0,5,length\\=10)", "0:5", "sequ(0,5)" )
 )
 
-pregunta("Para realizar un diagrama de sectores, utilizo la función:",
+pregunta("Para realizar un diagrama de sectores, utilizo la funciÃ³n:",
    c("Ninguna de las dos", "sector()", "tarta()")
 )
 
 pregunta("Un diagrama de sectores:",
-  c("Es para una variable basada en categorías", 
+  c("Es para una variable basada en categorÃ­as", 
      "Es para una variable continua", "Ninguna de las dos")
 )
 
 
 #
-#Práctica 2
+#PrÃ¡ctica 2
 #
 cat("\n\n$CATEGORY: Ex_Pr2\n\n")
 
@@ -116,22 +116,22 @@ for(i in 1:5)#5 vectores de datos distintos
    "\\n", sep="")
 
         #
-        preg1<-paste(preg, "¿Cuánto vale la suma de los elementos menores que la media?")
+        preg1<-paste(preg, "Å¼CuÃ¡nto vale la suma de los elementos menores que la media?")
         sol1<-as.character( sum(x[x<mean(x)])*c(1,.75,.5))
         pregunta(preg1, sol1)
 
 	#
-        preg2<-paste(preg, "¿Cuánto vale la suma de los elementos mayores que la media?")
+        preg2<-paste(preg, "Å¼CuÃ¡nto vale la suma de los elementos mayores que la media?")
         sol2<-as.character( sum(x[x>mean(x)])*c(1,1.75,1.5))
         pregunta(preg2, sol2)
 
         #
-        preg3<-paste(preg, "¿Cuánto vale la suma de los elementos menores que la mediana?")
+        preg3<-paste(preg, "Å¼CuÃ¡nto vale la suma de los elementos menores que la mediana?")
         sol3<-as.character( sum(x[x<median(x)])*c(1,.75,.5))
         pregunta(preg3, sol3)
 
 	#
-        preg4<-paste(preg, "¿Cuánto vale la suma de los elementos mayores que la mediana?")
+        preg4<-paste(preg, "Å¼CuÃ¡nto vale la suma de los elementos mayores que la mediana?")
         sol4<-as.character( sum(x[x>median(x)])*c(1,.75,1.5))
         pregunta(preg4, sol4)
 
@@ -154,18 +154,18 @@ pregunta("Para multiplicar dos matrices X e Y elemento a elemento usaremos:",
    c("X*Y", "X%*%Y", "X.Y")
 )
 
-pregunta("Para calcular una muestra de tamaño 10 de un  vector X sin reposición,
+pregunta("Para calcular una muestra de tamaÅ„o 10 de un  vector X sin reposiciÃ³n,
 usaremos:",
    c("sample(X,10)", "samples(X,10,TRUE)", "Ninguna de las dos")
 )
 
-pregunta("Para calcular una muestra de tamaño 3 de un  vector X con reposición,
+pregunta("Para calcular una muestra de tamaÅ„o 3 de un  vector X con reposiciÃ³n,
 usaremos:",
    c("sample(X,3,rep\\=TRUE)", "sample(X,3,FALSE)", "Ninguna de las dos")
 )
 
 
-pregunta("¿Qué instrucción usarías para simular 100 veces el número de figuras obtenidas al extraer 10 cartas de una baraja de 40 cartas con reemplazamiento?",
+pregunta("Å¼QuÃ© instrucciÃ³n usarÃ­as para simular 100 veces el nÃºmero de figuras obtenidas al extraer 10 cartas de una baraja de 40 cartas con reemplazamiento?",
    c("rbinom(100,10,12/40)", "rbinom(100,10,10/40)", "Ninguna de las dos")
 )
 
@@ -180,7 +180,7 @@ ndistr<-length(nombres)
 
 for(i in 1:ndistr)
 {
-	preg<-paste("Sea una variable ", nombres[i], " de parámetros ")
+	preg<-paste("Sea una variable ", nombres[i], " de parÃ¡metros ")
 	preg<-paste(preg, paste(params[[i]], collapse=" y "), ". ", sep="")
 
 
@@ -198,7 +198,7 @@ for(i in 1:ndistr)
 	
 	pregunta(preg2, sol2)
 
-	#Cálculo de cuantiles
+	#CÃ¡lculo de cuantiles
 	qnt<-sample(1:100,1)
 	preg3<-paste(preg, "Para calcular el percentil del ",qnt, "% usaremos:", sep="")
 	sol3a<-paste("q",distr[i], "(", qnt/100,",",paste(params[[i]], collapse= ", "), ")", sep="") 
@@ -207,7 +207,7 @@ for(i in 1:ndistr)
 	
 	pregunta(preg3, c(sol3a, sol3b, sol3c))
 
-	#Simulación
+	#SimulaciÃ³n
 	preg4<-paste(preg, "Para simular 100 observaciones de esa variable aleatoria usaremos:", sep="")
 	sol4a<-paste("r",distr[i], "(", 100,",",paste(params[[i]], collapse= ", "), ")", sep="") 
 	sol4b<-paste("q",distr[i], "(", 100,",",paste(params[[i]], collapse= ", "), ")", sep="") 
@@ -217,17 +217,17 @@ for(i in 1:ndistr)
 }
 
 
-#NOTA: POnemos algo más de pintar curvas sobre histogramas??
+#NOTA: POnemos algo mÃ¡s de pintar curvas sobre histogramas??
 
 
 #
-#Práctica 3
+#PrÃ¡ctica 3
 #
 
 cat("\n\n$CATEGORY: Ex_Pr3\n\n")
 
 
-pregunta("Si tengo un factor X y quiero saber el número de datos de cada nivel del factor",
+pregunta("Si tengo un factor X y quiero saber el nÃºmero de datos de cada nivel del factor",
    c("table(X)", "levels(X)", "Ninguna de las anteriores")
 )
 
@@ -241,7 +241,7 @@ pregunta("Para convertir un vector X en un factor:",
    c("as.factor(X)", "fact(X)", "Ninguna es correcta")
 )
 
-pregunta("Para obtener un resumen numérico de un data frame X:",
+pregunta("Para obtener un resumen numÃ©rico de un data frame X:",
    c("summary(X)", "Summary(X)", "Ninguna de las otras dos")
 )
 
@@ -280,27 +280,27 @@ for(m in marcas[1:5])
 
 }
 
-#NOTA: Podemos poner alguna pregunta más sobre como comparar modelos, etc.
+#NOTA: Podemos poner alguna pregunta mÃ¡s sobre como comparar modelos, etc.
 
 
 
 #
-#Práctica 4
+#PrÃ¡ctica 4
 #
 
 
 cat("\n\n$CATEGORY: Ex_Pr4\n\n")
 
-pregunta("La media de 10000 variables aleatorias independientes e igualmente distribuidas, se distribuye según:",
-   c("Una normal por el teorema central del límite",
-   "Depende de cómo sea la distribución de las variables aleatorias",
+pregunta("La media de 10000 variables aleatorias independientes e igualmente distribuidas, se distribuye segÃºn:",
+   c("Una normal por el teorema central del lÃ­mite",
+   "Depende de cÃ³mo sea la distribuciÃ³n de las variables aleatorias",
    "Ninguna de las otras dos respuestas es correcta")
 )
 
-pregunta("La media de 10000 variables aleatorias independientes e igualmente distribuidas, se distribuye según:",
+pregunta("La media de 10000 variables aleatorias independientes e igualmente distribuidas, se distribuye segÃºn:",
    c("Ninguna de las dos",
-   "Para la mayoría de casos según una normal",
-   "Depende de cómo sea la distribución de las variables aleatorias")
+   "Para la mayorÃ­a de casos segÃºn una normal",
+   "Depende de cÃ³mo sea la distribuciÃ³n de las variables aleatorias")
 )
 
 
@@ -308,20 +308,20 @@ for(m in seq(10, 25, by=5))
 {
 for(ss in seq(30, 50, by=10))
 {
-	preg1<-paste("Si tengo una población de media ", m, " y calculo 1000 intervalos de confianza al 95% con muestras de tamaño ", ss, " de esa población:", sep="")
-	sol1<-c("Ninguna de las dos", paste("No se puede saber aproximadamente el número de intervalos que contendrán al ", m, "", sep=""), paste("Más del 95% de los intervalos contendrán el valor ", m, sep=""))
+	preg1<-paste("Si tengo una poblaciÃ³n de media ", m, " y calculo 1000 intervalos de confianza al 95% con muestras de tamaÅ„o ", ss, " de esa poblaciÃ³n:", sep="")
+	sol1<-c("Ninguna de las dos", paste("No se puede saber aproximadamente el nÃºmero de intervalos que contendrÃ¡n al ", m, "", sep=""), paste("MÃ¡s del 95% de los intervalos contendrÃ¡n el valor ", m, sep=""))
 	pregunta(preg1, sol1)
 
 
 	for(dt in seq(20, 50, by=10))
 	{
-preg2<-paste("Si tengo una variable aleatoria con media ", m, " y desviación típica ", dt, ". ¿Cuál es la desviación típica de la variable media de las muestras de tamaño ", ss, "?", sep="")
+preg2<-paste("Si tengo una variable aleatoria con media ", m, " y desviaciÃ³n tÃ­pica ", dt, ". Å¼CuÃ¡l es la desviaciÃ³n tÃ­pica de la variable media de las muestras de tamaÅ„o ", ss, "?", sep="")
 sol2<-c(paste(dt, "/sqrt(", ss,")", sep=""),
    paste(dt, ", la misma que la de la variable original", sep=""),
    "Ninguna de las dos")
 pregunta(preg2, sol2)
 
-preg3<-paste("Si tengo una variable aleatoria con media ", m, " y desviación típica ", dt, ". ¿Cuál es la media de la variable media de las muestras de tamaño ", ss, "?", sep="")
+preg3<-paste("Si tengo una variable aleatoria con media ", m, " y desviaciÃ³n tÃ­pica ", dt, ". Å¼CuÃ¡l es la media de la variable media de las muestras de tamaÅ„o ", ss, "?", sep="")
 sol3<-c(paste(m, ", la misma que la de la variable original", sep=""),
 paste(dt, "/sqrt(", ss,")", sep=""),
    "Ninguna de las dos")
@@ -348,7 +348,7 @@ for(v in variables[1:3])
 	preg1<-paste("Utilizando el archivo CochesBig.sav. La media de ", v,
   " puede ser ", m0, " con una confianza del ", conf,"%", sep="")
 
-	sol1<-c(paste("Sí, ya que ese valor está dentro del intervalo de confianza al ",conf,"%", sep=""),
+	sol1<-c(paste("SÃ­, ya que ese valor estÃ¡ dentro del intervalo de confianza al ",conf,"%", sep=""),
    paste("No, porque la media vale ",round(mean(cochesbig[,v]), 2), sep=""),
    "Ninguna de las dos")
 
@@ -372,7 +372,7 @@ for(v in variables[1:3])
 }
 }
 
-#AÑADIR: contraste de hipótesis proporciones,
+#AÅƒADIR: contraste de hipÃ³tesis proporciones,
 
 
 
@@ -386,15 +386,15 @@ for(x in seq(5, 10, by=5))
 {
 	p0<-round((x/n)*runif(1,.75,5), 2)
 
-	preg1<-paste("En una fábrica se inspeccionaron ", n, 
+	preg1<-paste("En una fÃ¡brica se inspeccionaron ", n, 
    " piezas, de las que ", x, " resultaron ser defectuosas. ",
-   "Con un ", conf, "% de confianza, ¿hay evidencia de que la",
-   " proporción de piezas defectuosas sea igual a ", p0,"?", sep="")
+   "Con un ", conf, "% de confianza, Å¼hay evidencia de que la",
+   " proporciÃ³n de piezas defectuosas sea igual a ", p0,"?", sep="")
 
 	ttp<-prop.test(x,n, p=p0, conf.level=conf/100)
 
-	sol1<-c(paste("Sí, porque ese valor está en el intervalo de confianza",sep=""),
-   paste("No porque la proporción observada es ", round(x/n, 4), sep=""),
+	sol1<-c(paste("SÃ­, porque ese valor estÃ¡ en el intervalo de confianza",sep=""),
+   paste("No porque la proporciÃ³n observada es ", round(x/n, 4), sep=""),
    "Ninguna de las dos")
 
 	if( ttp$p.value>(1-conf/100) )
@@ -407,9 +407,9 @@ for(x in seq(5, 10, by=5))
 	}
 
 
-	preg2<-paste("En una fábrica se inspeccionaron ", n,
+	preg2<-paste("En una fÃ¡brica se inspeccionaron ", n,
    " piezas, de las que ", x, " resultaron ser defectuosas. ",
-"Un intervalo de confianza al ", conf,   "% de confianza para la proporción de piezas defectuosas es", sep="")
+"Un intervalo de confianza al ", conf,   "% de confianza para la proporciÃ³n de piezas defectuosas es", sep="")
 
         sol2<-c(paste("(", paste(round(as.numeric(ttp$conf.int), 4), collapse=", "), ")", sep=""),
    paste("(", paste(.15+round(1.1*as.numeric(ttp$conf.int), 4), collapse=", "), ")", sep=""),
@@ -428,7 +428,7 @@ for(x in seq(5, 10, by=5))
 
 
 #
-#Práctica 5
+#PrÃ¡ctica 5
 #
 
 
@@ -455,11 +455,11 @@ for(sigma in seq(5, 5, by=1))
 
    #Contraste
     preg1<-paste(preg, 
-   "¿Podemos considerar las medias de chicos y chicas iguales? ",
-    "Considera un nivel de significación de ", 1-conf/100, ".", sep="")
+   "Å¼Podemos considerar las medias de chicos y chicas iguales? ",
+    "Considera un nivel de significaciÃ³n de ", 1-conf/100, ".", sep="")
 
 
-   sol1<-c("Sí", "No", "Faltan datos")
+   sol1<-c("SÃ­", "No", "Faltan datos")
 
    tt<-t.test(mujeres, hombres, conf.level=conf/100)
 
@@ -488,17 +488,17 @@ for(x2 in seq(5, 10, by=3))
 for( conf in seq(80, 99, by=5))
 {
 	preg<-paste("Para contrastar dos proporciones tomamos dos muestras ",
-    "procedentes de dos poblaciones distintas de tamaños ", n1, " y ", n2,
-    ", obteniendo los siguientes resultados:\\n\\n Éxitos en la primera muestra ",
-    x1, "\\n\\nÉxitos en la segunda muestra ", x2, ".\\n\\n", sep="")
+    "procedentes de dos poblaciones distintas de tamaÅ„os ", n1, " y ", n2,
+    ", obteniendo los siguientes resultados:\\n\\n Ã‰xitos en la primera muestra ",
+    x1, "\\n\\nÃ‰xitos en la segunda muestra ", x2, ".\\n\\n", sep="")
 
 
    #Contraste de medias
    preg1<-paste(preg, 
-  "¿Podemos aceptar la igualdad de proporciones con un nivel de confianza del ",
+  "Å¼Podemos aceptar la igualdad de proporciones con un nivel de confianza del ",
   conf, "%?", sep="") 
 
-	sol1<-c("Sí", "No", "Faltan datos")
+	sol1<-c("SÃ­", "No", "Faltan datos")
 
 	ttp<-prop.test(c(x1,x2), c(n1, n2), conf.level=conf/100)
 
@@ -520,7 +520,7 @@ for( conf in seq(80, 99, by=5))
 
 
 #
-#Práctica 6
+#PrÃ¡ctica 6
 #
 
 #ANOVA
@@ -544,7 +544,7 @@ catalizador<-data.frame(catalizador=rep(c("C1","C2","C3"), each=3),
 aovcat<-aov(produccion~catalizador, data=catalizador)
 saovcat<-summary(aovcat)
 
-preg<-"Un experimento se realizó para medir la producción proporcionada por cada uno de tres catalizadores en cierta reacción. El experimento se repitió tres veces. Las producciones en gramos son:\\n\\n"
+preg<-"Un experimento se realizÃ³ para medir la producciÃ³n proporcionada por cada uno de tres catalizadores en cierta reacciÃ³n. El experimento se repitiÃ³ tres veces. Las producciones en gramos son:\\n\\n"
 
 
 	preg<-paste(preg, "Catalizador 1:", paste(x1, collapse=","), "\\n\\n")
@@ -553,24 +553,24 @@ preg<-"Un experimento se realizó para medir la producción proporcionada por cada
 
 
 	#CM ENTRE
-	preg1<-paste(preg, "¿Cuál es el cuadrado medio de la variabilidad entre grupos?", sep="")
+	preg1<-paste(preg, "Å¼CuÃ¡l es el cuadrado medio de la variabilidad entre grupos?", sep="")
 	sol1<-c(as.character(round(saovcat[[1]]$"Mean Sq", 4)), "Ninguno de los dos")
 	pregunta(preg1, sol1)
 
 	#CM DENTRO
-	preg2<-paste(preg, "¿Cuál es el cuadrado medio de la variabilidad dentro de los grupos (o residual)?", sep="")
+	preg2<-paste(preg, "Å¼CuÃ¡l es el cuadrado medio de la variabilidad dentro de los grupos (o residual)?", sep="")
 	sol2<-c(as.character(round(saovcat[[1]]$"Mean Sq"[2:1], 4)), "Ninguno de los dos")
 	pregunta(preg2, sol2)
 
-	#Estadístico de contraste
-	preg3<-paste(preg, "¿Cuál es el valor del estadístico de contraste?", sep="")
+	#EstadÃ­stico de contraste
+	preg3<-paste(preg, "Å¼CuÃ¡l es el valor del estadÃ­stico de contraste?", sep="")
 	sol3<-round(c(saovcat[[1]]$"F value"[1], saovcat[[1]]$"Pr(>F)"[1], 
    saovcat[[1]]$"Df"[1]), 4)
 	sol3<-as.character(sol3)
 	pregunta(preg3, sol3)
 
 	#p-valor
-	preg4<-paste(preg, "¿Cuál es el p-valor del contraste?", sep="")
+	preg4<-paste(preg, "Å¼CuÃ¡l es el p-valor del contraste?", sep="")
 	sol4<-round(c(saovcat[[1]]$"Pr(>F)"[1], saovcat[[1]]$"F value"[1], 
    saovcat[[1]]$"Df"[1]), 4)
 	sol4<-as.character(sol4)
@@ -581,7 +581,7 @@ preg<-"Un experimento se realizó para medir la producción proporcionada por cada
 
 
 
-#Regresión lineal
+#RegresiÃ³n lineal
 cat("\n\n$CATEGORY: Ex_Pr6_RL\n\n")
 
 lpred<-list(pvp=10000, emision=200, potencia=150, costecar=800, nplaza=3)
@@ -596,21 +596,21 @@ preg<-paste("Sea el fichero de datos cochesBig.sav. Considera el modelo lineal e
 	m1<-lm(f1, data=cochesbig)
 	m2<-lm(f2, data=cochesbig)
 
-	#Interceptación
-	preg1<-paste(preg, "¿Cuál es el valor del término independiente de ese modelo?", sep="")
+	#InterceptaciÃ³n
+	preg1<-paste(preg, "Å¼CuÃ¡l es el valor del tÃ©rmino independiente de ese modelo?", sep="")
 sol1<-as.character(round(c(coef(m1)[[1]], coef(m1)[[2]], coef(m2)[[1]]), 4))
 	pregunta(preg1, sol1)
 
 
 
 	#Coeficiente
-	preg2<-paste(preg, "¿Cuál es el valor del coeficiente de la variable explicativa de ese modelo?", sep="")
+	preg2<-paste(preg, "Å¼CuÃ¡l es el valor del coeficiente de la variable explicativa de ese modelo?", sep="")
 sol2<-as.character(round(c(coef(m1)[[2]], coef(m1)[[1]], coef(m2)[[2]]), 4))
 	pregunta(preg2, sol2)
 
 
-	#Predicción
-	preg3<-paste(preg, "¿Cuál es el valor de consumo que me predice el modelo para un coche de ", v, " de ", lpred[v][[1]],"?", sep="")
+	#PredicciÃ³n
+	preg3<-paste(preg, "Å¼CuÃ¡l es el valor de consumo que me predice el modelo para un coche de ", v, " de ", lpred[v][[1]],"?", sep="")
 	sol3<-as.character(round(c(predict(m1, as.data.frame(lpred[v]))[[1]],
    predict(m1, .5*as.data.frame(lpred[v]))[[1]]),4))
 	sol3<-c(sol3, "Ninguno de los dos")
@@ -621,7 +621,7 @@ sol2<-as.character(round(c(coef(m1)[[2]], coef(m1)[[1]], coef(m2)[[2]]), 4))
 sink()
 
 
-#Convertimos a UTF-8 (SÓLO funcionará en Linux) el fichero
+#Convertimos a UTF-8 (SÃ“LO funcionarÃ¡ en Linux) el fichero
 system("iconv -f ISO-8859-1 -t UTF8 test_examen.txt>kk.txt")
 system("cp kk.txt test_examen.txt")
 system("rm kk.txt")
