@@ -36,7 +36,7 @@ No value is returned but some text in printed.
 
 \examples{
 #Question 1
-GIFTSA("The mean of 1, 2, and 3 is", c("Three", "3"))
+GIFTSA("The mean of 1, 2, and 3 is", c("Two", "2"), wright = c("100", "100"))
 
 #Question 2
 GIFTSA("Compute the mean of 1, 2 and 3",
