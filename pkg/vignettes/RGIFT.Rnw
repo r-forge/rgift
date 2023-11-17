@@ -281,7 +281,7 @@ function but a single backslash will be printed.
 
 Finally, as text must be encoded in UTF-8 function \code{iconv()} can be used
 to convert  text strings from the local character encoding into UTF-8.
-A simple example in Spanish could be:
+A simple example in Spanish (that requires Spanish locales to be installed) could be:
 
 \verbatiminput{UTF8.R}
 <<>>=
