@@ -8,7 +8,7 @@ Author: María José Haro-Delicado, Virgilio Gómez-Rubio and Francisco
 Maintainer: Virgilio Gómez-Rubio <virgilio.gomez@uclm.es>
 Depends: R (>= 2.10.0)
 Suggests: foreign
-Description: This package provides some functions to create quizzes
+Description: Implementation of some functions to create quizzes
   in the GIFT format. This format is used by several Virtual Learning
   Environments such as Moodle.
 License: GPL (>= 2)
