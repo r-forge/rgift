@@ -3,8 +3,8 @@
 $CATEGORY:  SAQuestions 
 
 The mean of 1, 2, and 3 is {
-=%100%Three
-=%100%3
+=%100%Two
+=%100%2
 }
 
 Compute the mean of 1, 2 and 3 {
