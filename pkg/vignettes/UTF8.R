@@ -21,13 +21,9 @@ if(sysname == "Darwin") { # Mac OS X
 Sys.setlocale(locale = from_locale)
 txt <- "\xbfEs Madrid la capital de Espa\xf1a?"
 
-
-encod <- strsplit(locale, "\\.|@")[[1]][2]
-
-
 Sys.setlocale(locale = to_locale)
 
-txt2 <- iconv(txt, encod, "UTF-8")
+txt2 <- iconv(txt, "latin1", "UTF-8")
 
 sink("utf8.txt")
 GIFTTF(txt2, TRUE)
