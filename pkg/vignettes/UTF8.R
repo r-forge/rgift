@@ -1,26 +1,26 @@
 #Example of use of text in UTF-8 encoding
 library(RGIFT)
 
+#Get Local enconding:
+#Option 1: Set locale
+#locale<-"es_ES.iso-8859-15"
+#Option 2: Get locale from OS
+locale <- Sys.getlocale("LC_CTYPE")
 
-# Get locales according to OS
+# Set locales according to OS
 sysname <- Sys.info()['sysname']
 
-if(sysname == "Darwin") {
+if(sysname == "Darwin") { # Mac OS X
   from_locale <- "es_ES.ISO8859-1"
   to_locale <- "es_ES.UTF-8"
-} else {
-  from_locale <- "es_ES.iso-8859-1"
+} else { # Other OS's (Linux)
+  from_locale <- "es_ES.iso88591"
   to_locale <- "es_ES.utf8"
 }
 
 Sys.setlocale(locale = from_locale)
 txt <- "\xbfEs Madrid la capital de Espa\xf1a?"
 
-#Get Local enconding:
-#Option 1: Set locale
-#locale<-"es_ES.iso-8859-15"
-#Option 2: Get locale from OS
-locale <- Sys.getlocale("LC_CTYPE")
 
 encod <- strsplit(locale, "\\.|@")[[1]][2]
 
