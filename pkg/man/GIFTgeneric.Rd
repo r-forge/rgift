@@ -39,7 +39,7 @@ No value is returned but some text in printed.
 \url{http://docs.moodle.org/21/en/GIFT_format}
 }
 
-\author{Virgilio Gómez-Rubio <virgilio.gomez@uclm.es>}
+\author{Virgilio GÃ³mez-Rubio <virgilio.gomez@uclm.es>}
 
 \examples{
 
