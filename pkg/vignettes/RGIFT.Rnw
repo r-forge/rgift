@@ -115,7 +115,7 @@ using Multiple Choice Questions:
 
 
 \verbatiminput{MCQExample.R}
-<<>>=
+<<echo = FALSE>>=
 library(RGIFT)
 source("MCQExample.R")
 @
@@ -146,7 +146,7 @@ to mark it either as true or false. The following code shows some examples
 using function \code{GIFTTF()}:
 
 \verbatiminput{TFQExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("TFQExample.R")
 @
 
@@ -157,7 +157,7 @@ Short Answer questions are those for which the students has to write down the
 answer. This can be produced using function \code{GIFTSA()} as follows:
 
 \verbatiminput{SAQExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("SAQExample.R")
 @
 
@@ -170,7 +170,7 @@ Matching Questions provide two groups of words and/or sentences that need
 to be matched. This can be produced as follows using function \code{GIFTM()}:
 
 \verbatiminput{MQExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("MQExample.R")
 @
 
@@ -182,7 +182,7 @@ using function \code{GIFTMW()}:
 
 
 \verbatiminput{MWQExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("MWQExample.R")
 @
 
@@ -198,7 +198,7 @@ function \code{GIFTNQ()}:
 
 
 \verbatiminput{NQExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("NQExample.R")
 @
 
@@ -216,7 +216,7 @@ and run through \RR to test the students' code automatically. This questions can
 be created with command \code{GIFTE()}:
 
 \verbatiminput{EExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("EExample.R")
 @
 
@@ -229,7 +229,7 @@ or to mark the beginning of different blocks of questions. Descriptions
 can be added with command \code{GIFTD()}:
 
 \verbatiminput{DExample.R}
-<<>>=
+<<echo = FALSE>>=
 source("DExample.R")
 @
 
@@ -284,7 +284,7 @@ to convert  text strings from the local character encoding into UTF-8.
 A simple example in Spanish (that requires Spanish locales to be installed) could be:
 
 \verbatiminput{UTF8.R}
-<<>>=
+<<echo = FALSE>>=
 source(file("UTF8.R", encoding="ISO-8859-1"))
 @
 \noindent

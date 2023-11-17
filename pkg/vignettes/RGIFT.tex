@@ -116,12 +116,6 @@ using Multiple Choice Questions:
 
 
 \verbatiminput{MCQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> library(RGIFT)
-> source("MCQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 Question 1 provides a very simple question about the mean of a set of numbers.
 In addition to the question, a vector of possible answers is given and the
@@ -149,11 +143,6 @@ to mark it either as true or false. The following code shows some examples
 using function \code{GIFTTF()}:
 
 \verbatiminput{TFQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("TFQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 
 \subsubsection{Short Answer Questions}
@@ -162,11 +151,6 @@ Short Answer questions are those for which the students has to write down the
 answer. This can be produced using function \code{GIFTSA()} as follows:
 
 \verbatiminput{SAQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("SAQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 Similarly to the Multiple Choice questions, different weights for right and
 worngs answers can be set. Multiple answers are possible as well.
@@ -177,11 +161,6 @@ Matching Questions provide two groups of words and/or sentences that need
 to be matched. This can be produced as follows using function \code{GIFTM()}:
 
 \verbatiminput{MQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("MQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 \subsubsection{Missing Word Questions}
 
@@ -191,11 +170,6 @@ using function \code{GIFTMW()}:
 
 
 \verbatiminput{MWQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("MWQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 
 
@@ -209,11 +183,6 @@ function \code{GIFTNQ()}:
 
 
 \verbatiminput{NQExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("NQExample.R")
-\end{Sinput}
-\end{Schunk}
 
 
 In principle, the range for valid answers is the answer plus/minus the error
@@ -229,11 +198,6 @@ and run through \RR to test the students' code automatically. This questions can
 be created with command \code{GIFTE()}:
 
 \verbatiminput{EExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("EExample.R")
-\end{Sinput}
-\end{Schunk}
 
 
 \subsubsection{Description}
@@ -244,11 +208,6 @@ or to mark the beginning of different blocks of questions. Descriptions
 can be added with command \code{GIFTD()}:
 
 \verbatiminput{DExample.R}
-\begin{Schunk}
-\begin{Sinput}
-> source("DExample.R")
-\end{Sinput}
-\end{Schunk}
 
 \subsection{Formatting text}
 
@@ -306,11 +265,6 @@ to convert  text strings from the local character encoding into UTF-8.
 A simple example in Spanish (that requires Spanish locales to be installed) could be:
 
 \verbatiminput{UTF8.R}
-\begin{Schunk}
-\begin{Sinput}
-> source(file("UTF8.R", encoding="ISO-8859-1"))
-\end{Sinput}
-\end{Schunk}
 \noindent
 Note that the previous text has been written in an environment with an
 ISO-8859-15 encoding. A good discussion on the use of different encodings
